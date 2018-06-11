@@ -2,12 +2,17 @@
 <html>
 
 <head>
-  <link rel="stylesheet" src="//normalize-css.googlecode.com/svn/trunk/normalize.css" />
+  <!-- Normalize.css for better cross-browser consistency -->
+  <link rel="stylesheet" href="//normalize-css.googlecode.com/svn/trunk/normalize.css" />
+  <!-- Main CSS file -->
   <link rel="stylesheet" href="css/styles.css">
+  <!--Viewport-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--Title-->
   <title>Restaurant Reviews</title>
 </head>
 
-<body>
+<body id="home-page-body">
   <header>
     <nav>
       <h1><a href="/">Restaurant Reviews</a></h1>
@@ -18,7 +23,7 @@
     <section id="map-container">
       <div id="map"></div>
     </section>
-    <section>
+    <section id="search-results-wrapper">
       <div class="filter-options">
         <h2>Filter Results</h2>
         <select id="neighborhoods-select" name="neighborhoods" onchange="updateRestaurants()">
@@ -34,7 +39,7 @@
 
   <script type="application/javascript" charset="utf-8" src="js/dbhelper.js"></script>
   <script type="application/javascript" charset="utf-8" src="js/main.js"></script>
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&libraries=places&callback=initMap"></script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVBo7pG2U82PjEJWyLbngIowRp8DiHd2E&libraries=places&callback=initMap"></script>
 
 
   <footer id="footer">

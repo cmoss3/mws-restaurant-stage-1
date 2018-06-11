@@ -273,3 +273,75 @@ nav h1 a {
 #restaurant-hours td {
   color: #666;
 }
+
+/*Appended CSS Styles*/
+
+nav > h1 > a {
+  line-height: 80px;
+  font-size: 9pt;
+}
+
+#home-page-body {
+  background-color: #fff;
+}
+
+#home-page-body #maincontent {
+  display: flex;
+  flex-direction: column;
+}
+
+#home-page-body #map-container {
+  width: 100%;
+}
+
+#home-page-body #search-results-wrapper {
+  width: 100%;
+}
+
+#home-page-body #search-results-wrapper #restaurants-list {
+  padding: 0;
+}
+
+#home-page-body #search-results-wrapper #restaurants-list li {
+  width: 100%;
+  margin: 5px 0;
+  padding: 0;
+  border: 0;
+  background-color: #f8f8f8;
+}
+
+#home-page-body #search-results-wrapper #restaurants-list li h1,
+#home-page-body #search-results-wrapper #restaurants-list li p {
+  padding: 0 10px;
+}
+
+#home-page-body #search-results-wrapper #restaurants-list li a {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 12pt;
+  font-weight: 700;
+}
+
+#home-page-body .filter-options > h2 {
+  display: none;
+}
+
+#home-page-body .filter-options {
+  display: flex;
+  flex-direction: row;
+  height: auto;
+}
+
+#home-page-body .filter-options #neighborhoods-select,
+#home-page-body .filter-options #cuisines-select {
+  width: 50%;
+  height: 35px;
+  font-size: 9pt;
+}
+
+#home-page-body > footer {
+  font-size: 12px;
+}
+/*Media Queries*/
+
+/*Increase font sizes of header, filter inputs and footer*/
