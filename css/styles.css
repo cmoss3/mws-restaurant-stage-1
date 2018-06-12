@@ -276,6 +276,8 @@ nav h1 a {
 
 /*Appended CSS Styles*/
 
+/*Home Page*/
+
 nav > h1 > a {
   line-height: 80px;
   font-size: 9pt;
@@ -339,22 +341,73 @@ nav > h1 > a {
   font-size: 9pt;
 }
 
-#footer {
-  font-size: 9px;
+/*Restaurant Review Page*/
+
+#review-page-body #breadcrumb {
+    width: auto;
+}
+
+#review-page-body #restaurant-container {
+    padding: 30px;
+    width: auto;
+}
+
+#review-page-body #restaurant-img {
+    width: 100%;
+}
+
+#review-page-body #restaurant-cuisine {
+    width: 100%;
+}
+
+#review-page-body #reviews-container {
+    padding: 30px;
+    width: auto;
+}
+
+#review-page-body #reviews-list li {
+    width: auto;
+    padding: 20px;
+}
+
+#review-page-body #reviews-list li > p:nth-child(1),
+#review-page-body #reviews-list li > p:nth-child(2),
+#review-page-body #reviews-list li > p:nth-child(3){
+    font-weight: bold;
+}
+
+#review-page-body #reviews-list li > p:nth-child(4) {
+    font-size: 12pt;
+}
+
+#review-page-body #map-container {
+    position: inherit;
+    margin-top: 80px;
+    height: 300px;
+    width: 100%;
+}
+
+#review-page-body #restaurant-container {
+    position: static;
+}
+
+/*General (both pages)*/
+
+.inside #footer {
+    font-size: 9px;
+    padding: 25px 0;
+    width: 100%;
+    position: static;
 }
 /*Media Queries*/
 
-/*Increase font sizes of header, filter inputs and footer*/
+/*Home Page*/
 @media(min-width: 1000px) {
   #home-page-body > header {
     position: fixed;
     display: block;
     width: 100%;
     top: 0;
-  }
-
-  #home-page-body > header > nav > h1 > a {
-    font-size: 16pt;
   }
 
   #home-page-body #maincontent {
@@ -393,4 +446,11 @@ nav > h1 > a {
   #home-page-body #search-results-wrapper #restaurants-list {
     margin-top: 55px;
   }
+}
+
+/*General (both pages)*/
+@media(min-width: 1000px) {
+    header > nav > h1 > a {
+        font-size: 16pt;
+    }
 }
