@@ -340,6 +340,10 @@ nav > h1 > a {
   font-size: 9pt;
 }
 
+#home-page-body #restaurants-list .restaurant-img {
+  min-height: unset;
+}
+
 /*Restaurant Review Page*/
 
 #review-page-body #breadcrumb {
