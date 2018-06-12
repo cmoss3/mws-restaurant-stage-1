@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+  <!--Charset-->
+  <meta charset="utf-8">
   <!-- Normalize.css for better cross-browser consistency -->
   <link rel="stylesheet" href="//normalize-css.googlecode.com/svn/trunk/normalize.css" />
   <!-- Main CSS file -->
@@ -25,7 +27,6 @@
     </section>
     <section id="search-results-wrapper">
       <div class="filter-options">
-        <h2>Filter Results</h2>
         <select id="neighborhoods-select" name="neighborhoods" onchange="updateRestaurants()">
           <option value="all">All Neighborhoods</option>
         </select>
@@ -34,17 +35,15 @@
         </select>
       </div>
       <ul id="restaurants-list"></ul>
+      <footer id="footer">
+        Copyright (c) 2017 <a href="/"><strong>Restaurant Reviews</strong></a> All Rights Reserved.
+      </footer>
     </section>
   </main>
 
   <script type="application/javascript" charset="utf-8" src="js/dbhelper.js"></script>
   <script type="application/javascript" charset="utf-8" src="js/main.js"></script>
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVBo7pG2U82PjEJWyLbngIowRp8DiHd2E&libraries=places&callback=initMap"></script>
-
-
-  <footer id="footer">
-    Copyright (c) 2017 <a href="/"><strong>Restaurant Reviews</strong></a> All Rights Reserved.
-  </footer>
 
 </body>
 
