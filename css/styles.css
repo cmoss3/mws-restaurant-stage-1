@@ -280,7 +280,7 @@ nav h1 a {
 
 nav > h1 > a {
   line-height: 80px;
-  font-size: 9pt;
+  font-size: 7pt;
 }
 
 #home-page-body {
@@ -325,7 +325,6 @@ nav > h1 > a {
   width: 100%;
   padding: 10px 0;
   font-size: 12pt;
-  font-weight: 700;
 }
 
 #home-page-body .filter-options {
@@ -345,6 +344,7 @@ nav > h1 > a {
 
 #review-page-body #breadcrumb {
     width: auto;
+    margin-top: 80px;
 }
 
 #review-page-body #restaurant-container {
@@ -380,23 +380,27 @@ nav > h1 > a {
     font-size: 12pt;
 }
 
+#review-page-body #restaurant-name {
+    font-size: 16pt;
+    font-weight: 700;
+}
+
 #review-page-body #map-container {
     position: inherit;
-    margin-top: 80px;
-    height: 300px;
+    height: 200px;
     width: 100%;
 }
 
 #review-page-body #restaurant-container {
     position: static;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
 /*General (both pages)*/
 
 .inside #footer {
-    font-size: 9px;
-    padding: 25px 0;
-    width: 100%;
+    width: auto;
     position: static;
 }
 /*Media Queries*/
@@ -446,6 +450,21 @@ nav > h1 > a {
   #home-page-body #search-results-wrapper #restaurants-list {
     margin-top: 55px;
   }
+}
+
+/*Review Page*/
+@media(min-width: 1000px) {
+    #review-page-body #map-container {
+        position: inherit;
+        height: 200px;
+        width: 100%;
+    }
+
+    #review-page-body #restaurant-container {
+        position: static;
+        max-width: 600px;
+        margin: 0 auto;
+    }
 }
 
 /*General (both pages)*/
