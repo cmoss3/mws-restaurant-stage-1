@@ -393,8 +393,12 @@ nav > h1 > a {
 
 #review-page-body #restaurant-container {
     position: static;
-    max-width: 600px;
+    max-width: 800px;
     margin: 0 auto;
+}
+
+#review-page-body #restaurant-img-fig {
+  margin: 0;
 }
 
 /*General (both pages)*/
@@ -463,13 +467,13 @@ nav > h1 > a {
 
   #review-page-body #restaurant-container {
     width: calc(50% - 30px);
-    max-width: calc(50% - 30px);
+    /*max-width: calc(50% - 30px);*/
     margin: 0;
   }
 
   #review-page-body #restaurant-img,
   #review-page-body #restaurant-cuisine {
-    width: calc(100% - 60px);
+    width: calc(100% - 30px);
   }
 
   #review-page-body #reviews-container,

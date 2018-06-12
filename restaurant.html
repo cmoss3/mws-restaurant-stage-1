@@ -39,11 +39,18 @@
     <!-- End map -->
     <!-- Beginning restaurant -->
     <section id="restaurant-container">
-      <h1 id="restaurant-name"></h1>
-      <img id="restaurant-img">
-      <p id="restaurant-cuisine"></p>
-      <p id="restaurant-address"></p>
-      <table id="restaurant-hours"></table>
+        <h1 id="restaurant-name"></h1>
+        <figure id="restaurant-img-fig">
+            <img id="restaurant-img" 
+                 alt=""
+                 src="img/x-800.jpg"
+                 srcset="img/x-800.jpg 800w, img/x-600.jpg 600w, img/x-400.jpg 400w"
+                 sizes="(max-width: 480px) 400px,(max-width: 680px) 600px, 800px">
+            <figcaption></figcaption>
+        </figure>
+        <p id="restaurant-cuisine"></p>
+        <p id="restaurant-address"></p>
+        <table id="restaurant-hours"></table>
     </section>
     <!-- end restaurant -->
     <!-- Beginning reviews -->
