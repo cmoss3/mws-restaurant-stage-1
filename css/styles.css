@@ -454,17 +454,33 @@ nav > h1 > a {
 
 /*Review Page*/
 @media(min-width: 1000px) {
-    #review-page-body #map-container {
-        position: inherit;
-        height: 200px;
-        width: 100%;
-    }
+  #review-page-body #map-container {
+    float: right;
+    height: 100%;
+    width: 50%;
+    position: fixed;
+  }
 
-    #review-page-body #restaurant-container {
-        position: static;
-        max-width: 600px;
-        margin: 0 auto;
-    }
+  #review-page-body #restaurant-container {
+    width: calc(50% - 30px);
+    max-width: calc(50% - 30px);
+    margin: 0;
+  }
+
+  #review-page-body #restaurant-img,
+  #review-page-body #restaurant-cuisine {
+    width: calc(100% - 60px);
+  }
+
+  #review-page-body #reviews-container,
+  #review-page-body #footer{
+    width: 50%;
+    max-width: 50%;
+  }
+
+  #review-page-body #reviews-list li {
+    width: calc(100% - 90px);
+  }
 }
 
 /*General (both pages)*/
