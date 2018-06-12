@@ -441,7 +441,7 @@ nav > h1 > a {
   #home-page-body #map-container {
     width: calc(100% - 448px);
     border-right: 2px solid #ccc;
-    height: 100%;
+    height: calc(100% - 80px);
     position: fixed;
   }
 
@@ -464,7 +464,7 @@ nav > h1 > a {
 @media(min-width: 1000px) {
   #review-page-body #map-container {
     float: right;
-    height: 100%;
+    height: calc(100% - 80px);
     width: 50%;
     position: fixed;
   }
