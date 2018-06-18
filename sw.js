@@ -1,9 +1,9 @@
 const CACHE_NAME = 'my-site-cache-v1';
 const urlsToCache = [
     '/',
-    '/data/restaurants.json',
     '/css/styles.css',
     '/js/common.js',
+    '/js/browserDB.js',
     '/js/dbhelper.js',
     '/js/main.js',
     '/js/restaurant_info.js',
