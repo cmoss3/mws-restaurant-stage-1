@@ -181,4 +181,7 @@ addMarkersToMap = (restaurants = self.restaurants) => {
     });
     self.markers.push(marker);
   });
-}
+  google.maps.event.addListenerOnce(self.map, 'tilesloaded', () => {
+    createGoogleMapsIFrameTitle(`Restaurant locations shown on map`);
+  });
+};

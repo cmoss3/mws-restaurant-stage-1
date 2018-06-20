@@ -10,23 +10,31 @@
   <link rel="stylesheet" href="css/styles.css" type="text/css">
   <!--Viewport-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--Progressive App Manifest-->
+  <link rel="manifest" href="/manifest.json">
+  <!--Theme Color-->
+  <meta name="theme-color" content="#252831">
   <!--Title-->
   <title>Restaurant Info</title>
+  <noscript>
+    <h1>Warning: This site requires JavaScript to be enabled in order to function properly</h1>
+  </noscript>
 </head>
 
 <body class="inside" id="review-page-body">
-  <!-- Beginning header -->
+
   <header>
-    <!-- Beginning nav -->
     <nav>
       <h1><a href="/">Restaurant Reviews</a></h1>
+      <a href="#" class="install-progressive-app hide">Install App</a>
     </nav>
-    <!-- End nav -->
+    <div id="no-script">
+      <h1>Please enable JavaScript before using this site</h1>
+    </div>
   </header>
-  <!-- End header -->
 
   <!-- Beginning main -->
-  <main id="maincontent">
+  <main id="maincontent" style="display: none;">
     <!-- Beginning breadcrumb -->
     <ul id="breadcrumb" >
       <li><a href="/">Home</a></li>

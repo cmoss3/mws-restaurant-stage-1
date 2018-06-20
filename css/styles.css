@@ -411,6 +411,22 @@ nav > h1 > a {
     width: auto;
     position: static;
 }
+
+.hide {
+  display: none;
+}
+
+.install-progressive-app {
+  position: fixed;
+  top: 10px;
+  right: 20px;
+}
+
+#no-script {
+  text-align: center;
+  margin-top: 50px;
+}
+
 /*Media Queries*/
 
 /*Home Page*/

@@ -10,26 +10,37 @@
   <link rel="stylesheet" href="css/styles.css">
   <!--Viewport-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--Progressive App Manifest-->
+  <link rel="manifest" href="/manifest.json">
+  <!--Theme Color-->
+  <meta name="theme-color" content="#252831">
   <!--Title-->
   <title>Restaurant Reviews</title>
 </head>
 
 <body id="home-page-body">
+
   <header>
     <nav>
       <h1><a href="/">Restaurant Reviews</a></h1>
+      <a href="#" class="install-progressive-app hide">Install App</a>
     </nav>
+    <div id="no-script">
+      <h1>Please enable JavaScript before using this site</h1>
+    </div>
   </header>
 
-  <main id="maincontent">
+  <main id="maincontent" style="display: none">
     <section id="map-container">
       <div id="map"></div>
     </section>
     <section id="search-results-wrapper">
       <div class="filter-options">
+        <label for="neighborhoods-select" style="position:absolute;opacity:0;">Neighborhood</label>
         <select id="neighborhoods-select" name="neighborhoods" onchange="updateRestaurants()">
           <option value="all">All Neighborhoods</option>
         </select>
+        <label for="cuisines-select" style="position:absolute;opacity:0;">Cuisine</label>
         <select id="cuisines-select" name="cuisines" onchange="updateRestaurants()">
           <option value="all">All Cuisines</option>
         </select>
