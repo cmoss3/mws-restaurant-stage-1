@@ -149,7 +149,7 @@ createRestaurantHTML = (restaurant) => {
   image.alt = `Picture of the ${restaurant.name} restaurant`;
   li.append(image);
 
-  const name = document.createElement('h1');
+  const name = document.createElement('h2');
   name.innerHTML = restaurant.name;
   li.append(name);
 
@@ -182,6 +182,6 @@ addMarkersToMap = (restaurants = self.restaurants) => {
     self.markers.push(marker);
   });
   google.maps.event.addListenerOnce(self.map, 'tilesloaded', () => {
-    createGoogleMapsIFrameTitle(`Restaurant locations shown on map`);
+      setupAssistedTechAttributesOnGoogleMap(`Restaurant locations shown on map`);
   });
 };

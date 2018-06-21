@@ -316,7 +316,13 @@ nav > h1 > a {
   margin-top: 0;
 }
 
-#home-page-body #search-results-wrapper #restaurants-list li h1,
+#home-page-body #search-results-wrapper #restaurants-list li h2 {
+    font-size: 26px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+#home-page-body #search-results-wrapper #restaurants-list li h2,
 #home-page-body #search-results-wrapper #restaurants-list li p {
   padding: 0 10px;
 }
@@ -346,10 +352,10 @@ nav > h1 > a {
 
 /*Restaurant Review Page*/
 
-#review-page-body #breadcrumb {
-    width: auto;
-    margin-top: 80px;
-}
+/*#review-page-body #breadcrumb {*/
+    /*width: auto;*/
+    /*margin-top: 80px;*/
+/*}*/
 
 #review-page-body #restaurant-container {
     padding: 30px;
@@ -399,10 +405,38 @@ nav > h1 > a {
     position: static;
     max-width: 800px;
     margin: 0 auto;
+    border: 0;
+}
+
+#review-page-body #breadcrumb-container {
+    margin: 0;
+    margin-top: 80px;
+    width: 100%;
+    height: auto;
+    background-color: inherit;
+    text-align: left;
+    border-bottom: 1px solid #fff;
+}
+
+#review-page-body #breadcrumb-container #breadcrumb {
+    width: 100%;
+    padding-top: 3px;
+}
+
+#review-page-body #breadcrumb li+li:before {
+    margin: 8px;
+    border-left: 1px solid #000;
+    transform: rotate(30deg);
+    display: inline-block;
+    height: 10px;
+    content: " ";
+    padding: 2px;
+    position: relative;
+    top: 11px;
 }
 
 #review-page-body #restaurant-img-fig {
-  margin: 0;
+    margin: 0;
 }
 
 /*General (both pages)*/
@@ -413,18 +447,18 @@ nav > h1 > a {
 }
 
 .hide {
-  display: none;
+    display: none;
 }
 
 .install-progressive-app {
-  position: fixed;
-  top: 10px;
-  right: 20px;
+    position: fixed;
+    top: 10px;
+    right: 20px;
 }
 
 #no-script {
-  text-align: center;
-  margin-top: 50px;
+    text-align: center;
+    margin-top: 50px;
 }
 
 /*Media Queries*/
@@ -478,6 +512,10 @@ nav > h1 > a {
 
 /*Review Page*/
 @media(min-width: 1000px) {
+  #review-page-body #breadcrumb-container {
+    width: 50%;
+  }
+
   #review-page-body #map-container {
     float: right;
     height: calc(100% - 80px);

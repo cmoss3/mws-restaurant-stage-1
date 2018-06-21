@@ -43,9 +43,11 @@ installButton.addEventListener('click', () => {
 /*
  * Create a title attribute for all google maps iFrames
  */
-function createGoogleMapsIFrameTitle(title) {
+function setupAssistedTechAttributesOnGoogleMap(title) {
     const iframe = document.querySelector('#map iframe');
-    iframe.title = title;
+    const map = document.querySelector('#map');
+    map.setAttribute('role', 'application');
+    iframe.setAttribute('title', title);
 }
 
 /*

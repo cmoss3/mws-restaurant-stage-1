@@ -26,16 +26,18 @@
       <a href="#" class="install-progressive-app hide">Install App</a>
     </nav>
     <div id="no-script">
-      <h1>Please enable JavaScript before using this site</h1>
+      <strong>Please enable JavaScript before using this site</strong>
     </div>
   </header>
 
   <!-- Beginning main -->
   <main id="maincontent" style="display: none;">
     <!-- Beginning breadcrumb -->
-    <ul id="breadcrumb" >
-      <li><a href="/">Home</a></li>
-    </ul>
+    <nav id="breadcrumb-container" aria-label="Breadcrumb">
+      <ol id="breadcrumb" >
+        <li><a href="/" aria-current="page">Home</a></li>
+      </ol>
+    </nav>
     <!-- End breadcrumb -->
     <!-- Beginning map -->
     <section id="map-container">
@@ -44,7 +46,7 @@
     <!-- End map -->
     <!-- Beginning restaurant -->
     <section id="restaurant-container">
-        <h1 id="restaurant-name"></h1>
+        <h2 id="restaurant-name"></h2>
         <figure id="restaurant-img-fig">
             <img id="restaurant-img"
                  alt=""
