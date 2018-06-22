@@ -1,7 +1,7 @@
 const CACHE_NAME = 'my-site-cache-v1';
 const urlsToCache = [
     '/',
-    '/css/styles.css',
+    '/css/styles.min.css',
     '/js/common.js',
     '/js/browserDB.js',
     '/js/dbhelper.js',

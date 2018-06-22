@@ -49,9 +49,3 @@ function setupAssistedTechAttributesOnGoogleMap(title) {
     map.setAttribute('role', 'application');
     iframe.setAttribute('title', title);
 }
-
-/*
- * Enable view if JavaScript is available
- */
-document.querySelector('#maincontent').style = '';
-document.querySelector('#no-script').className = 'hide';

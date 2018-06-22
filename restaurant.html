@@ -4,10 +4,12 @@
 <head>
   <!--Charset-->
   <meta charset="utf-8">
-  <!-- Normalize.css for better cross-browser consistency -->
-  <link rel="stylesheet" href="//normalize-css.googlecode.com/svn/trunk/normalize.css" />
+  <!--Base Styles-->
+  <style>
+    body,li,p,td,th,ul{font-size:10pt;color:#333;font-family:Arial,Helvetica,sans-serif}a,a:focus,a:hover{text-decoration:none}body,h1,h2,h3,h4,h5,h6,li,p,td,th,ul{font-family:Arial,Helvetica,sans-serif}#footer,nav>h1>a{text-transform:uppercase}#footer,#no-script,nav{text-align:center}body,p,td,th{line-height:1.5}body{background-color:#fdfdfd;margin:0;position:relative}a{color:orange}a:focus,a:hover{color:#3397db}a img{border:0 #fff}h1,h2,h3,h4,h5,h6{margin:0 0 20px}article,aside,canvas,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}#maincontent{background-color:#f3f3f3;min-height:100%}#footer{background-color:#444;color:#aaa;font-size:8pt;letter-spacing:1px;padding:25px}nav>h1>a{line-height:80px;font-size:7pt;color:#fff;font-weight:200;letter-spacing:10px}.hide{display:none}.install-progressive-app{position:fixed;top:10px;right:20px}#no-script{margin-top:50px}nav{width:100%;height:80px;background-color:#252831}nav h1{margin:auto}
+  </style>
   <!-- Main CSS file -->
-  <link rel="stylesheet" href="css/styles.css" type="text/css">
+  <link rel="stylesheet" href="css/styles.min.css" type="text/css" id="deferred-styles">
   <!--Viewport-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!--Progressive App Manifest-->
@@ -20,9 +22,9 @@
 
 <body class="inside" id="review-page-body">
 
-  <header>
-    <nav>
-      <h1><a href="/">Restaurant Reviews</a></h1>
+  <header aria-label="Page header">
+    <nav aria-label="Page navigation">
+      <h1><a href="/" tabindex="1">Restaurant Reviews</a></h1>
       <a href="#" class="install-progressive-app hide">Install App</a>
     </nav>
     <div id="no-script">
@@ -31,22 +33,22 @@
   </header>
 
   <!-- Beginning main -->
-  <main id="maincontent" style="display: none;">
+  <main id="maincontent" style="display: none;" aria-label="Page content">
     <!-- Beginning breadcrumb -->
     <nav id="breadcrumb-container" aria-label="Breadcrumb">
       <ol id="breadcrumb" >
-        <li><a href="/" aria-current="page">Home</a></li>
+        <li><a href="/" aria-current="page" tabindex="2">Home</a></li>
       </ol>
     </nav>
     <!-- End breadcrumb -->
     <!-- Beginning map -->
-    <section id="map-container">
+    <section id="map-container" aria-label="Restaurant location map">
       <div id="map"></div>
     </section>
     <!-- End map -->
     <!-- Beginning restaurant -->
-    <section id="restaurant-container">
-        <h2 id="restaurant-name"></h2>
+    <section id="restaurant-container" aria-label="Restaurant information">
+        <h2 id="restaurant-name" tabindex="3"></h2>
         <figure id="restaurant-img-fig">
             <img id="restaurant-img"
                  alt=""
@@ -55,24 +57,31 @@
                  sizes="(max-width: 480px) 400px,(max-width: 680px) 600px, 800px">
             <figcaption></figcaption>
         </figure>
-        <p id="restaurant-cuisine"></p>
-        <p id="restaurant-address"></p>
-        <table id="restaurant-hours"></table>
+        <p id="restaurant-cuisine" aria-label="Restaurant cuisine" tabindex="4"></p>
+        <p id="restaurant-address" aria-label="Restaurant address" tabindex="5"></p>
+        <table id="restaurant-hours" aria-label="Restaurant hours" tabindex="6"></table>
     </section>
     <!-- end restaurant -->
     <!-- Beginning reviews -->
-    <section id="reviews-container">
+    <section id="reviews-container" aria-label="Restaurant reviews">
       <ul id="reviews-list"></ul>
     </section>
     <!-- End reviews -->
     <!-- Beginning footer -->
-    <footer id="footer">
+    <footer id="footer" aria-label="Page footer">
       Copyright (c) 2017 <a href="/"><strong>Restaurant Reviews</strong></a> All Rights Reserved.
     </footer>
     <!-- End footer -->
   </main>
   <!-- End main -->
 
+  <script type="application/javascript">
+      //Enable view if JavaScript is available
+      document.querySelector('#maincontent').style = '';
+      document.querySelector('#no-script').className = 'hide';
+      //Load deferred styles
+      document.querySelector('#deferred-styles').removeAttribute('disabled');
+  </script>
   <!--IndexedDB Wrapper-->
   <script type="application/javascript" charset="utf-8" src="js/browserDB.js"></script>
   <!-- Beginning scripts -->

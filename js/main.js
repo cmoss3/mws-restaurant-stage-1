@@ -135,9 +135,11 @@ fillRestaurantsHTML = (restaurants = self.restaurants) => {
 /**
  * Create restaurant HTML.
  */
+let restaurantCount = 0;
 createRestaurantHTML = (restaurant) => {
-  const li = document.createElement('li');
+  restaurantCount++;
 
+  const li = document.createElement('li');
   const image = document.getElementById('restaurant-image-template').cloneNode();
   image.removeAttribute('id');
   // const image = document.createElement('img');
@@ -150,21 +152,25 @@ createRestaurantHTML = (restaurant) => {
   li.append(image);
 
   const name = document.createElement('h2');
+  name.setAttribute('aria-label', 'Restaurant name');
   name.innerHTML = restaurant.name;
   li.append(name);
 
   const neighborhood = document.createElement('p');
+  neighborhood.setAttribute('aria-label', 'Restaurant neighborhood');
   neighborhood.innerHTML = restaurant.neighborhood;
   li.append(neighborhood);
 
   const address = document.createElement('p');
+  address.setAttribute('aria-label', 'Restaurant address');
   address.innerHTML = restaurant.address;
   li.append(address);
 
   const more = document.createElement('a');
   more.innerHTML = 'View Details';
   more.href = DBHelper.urlForRestaurant(restaurant);
-  li.append(more)
+  more.setAttribute('tabindex', `${restaurantCount+3}`);
+  li.append(more);
 
   return li
 }
