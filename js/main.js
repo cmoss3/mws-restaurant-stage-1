@@ -140,15 +140,10 @@ createRestaurantHTML = (restaurant) => {
   restaurantCount++;
 
   const li = document.createElement('li');
-  const image = document.getElementById('restaurant-image-template').cloneNode();
-  image.removeAttribute('id');
-  // const image = document.createElement('img');
-  // image.className = 'restaurant-img';
-  // image.src = DBHelper.imageUrlForRestaurant(restaurant);
-
-  image.src = image.src.replace(/x/g, restaurant.id);
-  image.srcset = image.srcset.replace(/x/g, restaurant.id);
-  image.alt = `Picture of the ${restaurant.name} restaurant`;
+  const image = document.createElement('picture');
+  const imageTemplate = document.getElementById('restaurant-image-template');
+  image.innerHTML = imageTemplate.innerHTML.replace(/X/g, restaurant.id);
+  image.children[1].alt = `Picture of the ${restaurant.name} restaurant`;
   li.append(image);
 
   const name = document.createElement('h2');

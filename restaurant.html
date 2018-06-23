@@ -42,21 +42,23 @@
     </nav>
     <!-- End breadcrumb -->
     <!-- Beginning map -->
-    <section id="map-container" aria-label="Restaurant location map">
+    <section id="map-container" aria-label="Restaurant location map" role="application">
       <div id="map"></div>
     </section>
     <!-- End map -->
     <!-- Beginning restaurant -->
     <section id="restaurant-container" aria-label="Restaurant information">
         <h2 id="restaurant-name" tabindex="3"></h2>
-        <figure id="restaurant-img-fig">
-            <img id="restaurant-img"
-                 alt=""
-                 src="img/x-800.jpg"
-                 srcset="img/x-800.jpg 800w, img/x-600.jpg 600w, img/x-400.jpg 400w"
+        <picture id="restaurant-img">
+           <source
+                 srcset="img/webp/X-800.webp 800w, img/webp/X-600.webp 600w, img/webp/X-400.webp 400w"
                  sizes="(max-width: 480px) 400px,(max-width: 680px) 600px, 800px">
-            <figcaption></figcaption>
-        </figure>
+            <img
+                 alt=""
+                 src="img/X-800.jpg"
+                 srcset="img/X-800.jpg 800w, img/jpeg/X-600.jpg 600w, img/jpeg/X-400.jpg 400w"
+                 sizes="(max-width: 480px) 400px,(max-width: 680px) 600px, 800px">
+        </picture>
         <p id="restaurant-cuisine" aria-label="Restaurant cuisine" tabindex="4"></p>
         <p id="restaurant-address" aria-label="Restaurant address" tabindex="5"></p>
         <table id="restaurant-hours" aria-label="Restaurant hours" tabindex="6"></table>

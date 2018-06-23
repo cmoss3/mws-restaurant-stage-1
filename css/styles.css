@@ -109,10 +109,6 @@
   width: auto;
 }
 
-#review-page-body #restaurant-img {
-  width: 100%;
-}
-
 #review-page-body #restaurant-address {
   font-size: 12pt;
   margin: 10px 0;
@@ -243,8 +239,8 @@
     top: 11px;
 }
 
-#review-page-body #restaurant-img-fig {
-    margin: 0;
+#review-page-body #restaurant-img img {
+    width: 100%;
 }
 
 #review-page-body #footer {
@@ -328,7 +324,7 @@
     margin: 0;
   }
 
-  #review-page-body #restaurant-img,
+  #review-page-body #restaurant-img img,
   #review-page-body #restaurant-cuisine {
     width: calc(100% - 30px);
   }

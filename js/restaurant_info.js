@@ -52,28 +52,25 @@ fetchRestaurantFromURL = (callback) => {
  * Create restaurant HTML and add it to the webpage
  */
 fillRestaurantHTML = (restaurant = self.restaurant) => {
-  const name = document.getElementById('restaurant-name');
-  name.innerHTML = restaurant.name;
+    const name = document.getElementById('restaurant-name');
+    name.innerHTML = restaurant.name;
 
-  const address = document.getElementById('restaurant-address');
-  address.innerHTML = restaurant.address;
+    const address = document.getElementById('restaurant-address');
+    address.innerHTML = restaurant.address;
 
-  const image = document.getElementById('restaurant-img');
-  image.src = image.src.replace(/x/g, restaurant.id);
-  image.srcset = image.srcset.replace(/x/g, restaurant.id);
-  image.alt = `Picture of the ${restaurant.name} restaurant`;
-  image.className = 'restaurant-img';
-  // image.src = DBHelper.imageUrlForRestaurant(restaurant);
+    const image = document.querySelector('#restaurant-img');
+    image.innerHTML = image.innerHTML.replace(/X/g, restaurant.id);
+    image.children[1].alt = `Picture of the ${restaurant.name} restaurant`;
 
-  const cuisine = document.getElementById('restaurant-cuisine');
-  cuisine.innerHTML = restaurant.cuisine_type;
+    const cuisine = document.getElementById('restaurant-cuisine');
+    cuisine.innerHTML = restaurant.cuisine_type;
 
-  // fill operating hours
-  if (restaurant.operating_hours) {
-    fillRestaurantHoursHTML();
-  }
-  // fill reviews
-  fillReviewsHTML();
+    // fill operating hours
+    if (restaurant.operating_hours) {
+        fillRestaurantHoursHTML();
+    }
+    // fill reviews
+    fillReviewsHTML();
 }
 
 /**

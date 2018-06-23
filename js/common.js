@@ -45,7 +45,5 @@ installButton.addEventListener('click', () => {
  */
 function setupAssistedTechAttributesOnGoogleMap(title) {
     const iframe = document.querySelector('#map iframe');
-    const map = document.querySelector('#map');
-    map.setAttribute('role', 'application');
     iframe.setAttribute('title', title);
 }

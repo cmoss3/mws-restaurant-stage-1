@@ -33,7 +33,7 @@
   </header>
 
   <main id="maincontent" style="display: none" aria-label="Page content">
-    <section id="map-container" aria-label="Restaurants map">
+    <section id="map-container" aria-label="Restaurants map" role="application">
       <div id="map"></div>
     </section>
     <section id="search-results-wrapper" aria-label="Available restaurants and filters">
@@ -47,12 +47,16 @@
           <option value="all">All Cuisines</option>
         </select>
       </div>
-      <img id="restaurant-image-template"
-           class="restaurant-img"
-           alt=""
-           src="img/x-800.jpg"
-           srcset="img/x-800.jpg 800w, img/x-600.jpg 600w, img/x-400.jpg 400w"
-           sizes="(max-width: 480px) 400px,(max-width: 680px) 600px, (max-width: 999px) 800px, (min-width: 1000px) 400px">
+      <picture id="restaurant-image-template">
+        <source
+             srcset="img/webp/X-800.webp 800w, img/webp/X-600.webp 600w, img/webp/X-400.webp 400w"
+             sizes="(max-width: 480px) 400px,(max-width: 680px) 600px, (max-width: 999px) 800px, (min-width: 1000px) 400px">
+        <img class="restaurant-img"
+             alt=""
+             src="img/jpeg/X-800.jpg"
+             srcset="img/jpeg/X-800.jpg 800w, img/jpeg/X-600.jpg 600w, img/jpeg/X-400.jpg 400w"
+             sizes="(max-width: 480px) 400px,(max-width: 680px) 600px, (max-width: 999px) 800px, (min-width: 1000px) 400px">
+      </picture>
       <ul id="restaurants-list" aria-label="Available restaurants"></ul>
       <footer id="footer" aria-label="Page footer">
         Copyright (c) 2017 <a href="/"><strong>Restaurant Reviews</strong></a> All Rights Reserved.
