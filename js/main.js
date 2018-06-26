@@ -1,8 +1,11 @@
 let restaurants,
-  neighborhoods,
-  cuisines
-var map
-var markers = []
+    neighborhoods,
+    cuisines,
+    map,
+    markers = [],
+    mapLoaded = false,
+    mapMarkersLoaded = false,
+    restaurantsLoaded = false;
 
 /**
  * Fetch neighborhoods and cuisines as soon as the page is loaded.
@@ -70,7 +73,9 @@ fillCuisinesHTML = (cuisines = self.cuisines) => {
 /**
  * Initialize Google map, called from HTML.
  */
-window.initMap = () => {
+window.initMap = function() {
+  mapLoader.className = 'hide';
+  mapElement.className = '';
   let loc = {
     lat: 40.722216,
     lng: -73.987501
@@ -80,7 +85,12 @@ window.initMap = () => {
     center: loc,
     scrollwheel: false
   });
-  updateRestaurants();
+  google.maps.event.addListenerOnce(self.map, 'tilesloaded', function() {
+    console.log('map loaded...');
+    mapLoaded = true;
+    setupAssistedTechAttributesOnGoogleMap(`Restaurant locations shown on map`);
+    addMarkersToMap();
+  });
 }
 
 /**
@@ -100,11 +110,16 @@ updateRestaurants = () => {
     if (error) { // Got an error!
       console.error(error);
     } else {
+      restaurantsLoaded = true;
+      console.log('restaurants laoded...');
       resetRestaurants(restaurants);
       fillRestaurantsHTML();
+      addMarkersToMap();
     }
   })
 }
+
+updateRestaurants();
 
 /**
  * Clear current restaurants, their HTML and remove their map markers.
@@ -116,7 +131,7 @@ resetRestaurants = (restaurants) => {
   ul.innerHTML = '';
 
   // Remove all map markers
-  self.markers.forEach(m => m.setMap(null));
+  // self.markers.forEach(m => m.setMap(null));
   self.markers = [];
   self.restaurants = restaurants;
 }
@@ -129,7 +144,6 @@ fillRestaurantsHTML = (restaurants = self.restaurants) => {
   restaurants.forEach(restaurant => {
       ul.append(createRestaurantHTML(restaurant));
   });
-  addMarkersToMap();
 }
 
 /**
@@ -172,8 +186,13 @@ createRestaurantHTML = (restaurant) => {
 
 /**
  * Add markers for current restaurants to the map.
+ * This function will be called from 2 places (after map load and after restaurant data load)
+ * We're not sure which of these processes will finish first, but we want to load the markers after both are done
  */
 addMarkersToMap = (restaurants = self.restaurants) => {
+  if (mapMarkersLoaded === true || mapLoaded === false || restaurantsLoaded === false) {
+    return;
+  }
   restaurants.forEach(restaurant => {
     // Add marker to the map
     const marker = DBHelper.mapMarkerForRestaurant(restaurant, self.map);
@@ -182,7 +201,33 @@ addMarkersToMap = (restaurants = self.restaurants) => {
     });
     self.markers.push(marker);
   });
-  google.maps.event.addListenerOnce(self.map, 'tilesloaded', () => {
-      setupAssistedTechAttributesOnGoogleMap(`Restaurant locations shown on map`);
-  });
 };
+
+/**
+ * If our user is on mobile we'll only load the Google Maps API
+ * If they open the map with a user gesture.
+ * This script takes up far too much load-time on mobile to load it by default.
+ */
+const mapLoader = document.getElementById('map-loading');
+const mapElement = document.getElementById('map');
+const mapContainer = document.getElementById('map-container');
+const loadMapButton = document.getElementById('load-google-map');
+
+const loadMapScript = () => {
+  const src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyDVBo7pG2U82PjEJWyLbngIowRp8DiHd2E&libraries=places&callback=initMap`;
+  const deferredScript = document.createElement('script');
+  deferredScript.setAttribute('src', src);
+  deferredScript.setAttribute('async', 'true');
+  deferredScript.setAttribute('deferred', 'true');
+  document.body.appendChild(deferredScript);
+  mapContainer.className = '';
+  loadMapButton.className = 'hide';
+};
+
+if (window.innerWidth <= 1000) {
+  loadMapButton.addEventListener('click', loadMapScript)
+} else {
+  mapContainer.className = '';
+  loadMapButton.className = 'hide';
+  loadMapScript();
+}

@@ -6,10 +6,10 @@
   <meta charset="utf-8">
   <!--Base Styles-->
   <style>
-    body,li,p,td,th,ul{font-size:10pt;color:#333;font-family:Arial,Helvetica,sans-serif}a,a:focus,a:hover{text-decoration:none}body,h1,h2,h3,h4,h5,h6,li,p,td,th,ul{font-family:Arial,Helvetica,sans-serif}#footer,nav>h1>a{text-transform:uppercase}#footer,#no-script,nav{text-align:center}body,p,td,th{line-height:1.5}body{background-color:#fdfdfd;margin:0;position:relative}a{color:orange}a:focus,a:hover{color:#3397db}a img{border:0 #fff}h1,h2,h3,h4,h5,h6{margin:0 0 20px}article,aside,canvas,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}#maincontent{background-color:#f3f3f3;min-height:100%}#footer{background-color:#444;color:#aaa;font-size:8pt;letter-spacing:1px;padding:25px}nav>h1>a{line-height:80px;font-size:7pt;color:#fff;font-weight:200;letter-spacing:10px}.hide{display:none}.install-progressive-app{position:fixed;top:10px;right:20px}#no-script{margin-top:50px}nav{width:100%;height:80px;background-color:#252831}nav h1{margin:auto}
+    body,li,p,td,th,ul{font-size:10pt;color:#333;font-family:Arial,Helvetica,sans-serif}a,a:focus,a:hover{text-decoration:none}body,h1,h2,h3,h4,h5,h6,li,p,td,th,ul{font-family:Arial,Helvetica,sans-serif}#footer,nav>h1>a{text-transform:uppercase}#footer,#no-script,nav{text-align:center}body,p,td,th{line-height:1.5}body{background-color:#fdfdfd;margin:0;position:relative}a{color:orange}a:focus,a:hover{color:#3397db}a img{border:0 #fff}h1,h2,h3,h4,h5,h6{margin:0 0 20px}article,aside,canvas,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}#maincontent{background-color:#f3f3f3;min-height:100%}#footer{background-color:#444;color:#aaa;font-size:8pt;letter-spacing:1px;padding:25px}nav>h1>a{line-height:80px;font-size:7pt;color:#fff;font-weight:200;letter-spacing:10px}.hide{display:none !important;}.install-progressive-app{position:fixed;top:10px;right:20px}#no-script{margin-top:50px}nav{width:100%;height:80px;background-color:#252831}nav h1{margin:auto}#home-page-body #load-google-map{width:100%;background-color:#3397DB;color:#fff;cursor:pointer;padding:30px;display:block;font-size:15px;text-transform:uppercase;border:0;border-bottom:1px solid #fff}@media (min-width:1000px){#home-page-body #load-google-map{position:fixed;padding:19px}}
   </style>
   <!-- Main CSS file -->
-  <link rel="stylesheet" href="css/styles.min.css" disabled id="deferred-styles">
+  <link rel="stylesheet" href="css/styles.css" disabled id="deferred-styles">
   <!--Viewport-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!--Progressive App Manifest-->
@@ -33,8 +33,67 @@
   </header>
 
   <main id="maincontent" style="display: none" aria-label="Page content">
-    <section id="map-container" aria-label="Restaurants map" role="application">
-      <div id="map"></div>
+    <button id="load-google-map">
+      Show restaurants on map
+      <svg width="15" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 129 129" enable-background="new 0 0 129 129">
+        <g>
+          <path d="m121.3,34.6c-1.6-1.6-4.2-1.6-5.8,0l-51,51.1-51.1-51.1c-1.6-1.6-4.2-1.6-5.8,0-1.6,1.6-1.6,4.2 0,5.8l53.9,53.9c0.8,0.8 1.8,1.2 2.9,1.2 1,0 2.1-0.4 2.9-1.2l53.9-53.9c1.7-1.6 1.7-4.2 0.1-5.8z" style="fill: rgb(255, 255, 255);"></path>
+        </g>
+      </svg>
+    </button>
+    <section id="map-container" class="hide" aria-label="Restaurants map" role="application">
+      <div id="map-loading">
+        <svg width="25%" height="25%" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid"><g transform="rotate(0 50 50)">
+          <rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill="#c5523f">
+            <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.9166666666666666s" repeatCount="indefinite"></animate>
+          </rect>
+        </g><g transform="rotate(30 50 50)">
+          <rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill="#c5523f">
+            <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.8333333333333334s" repeatCount="indefinite"></animate>
+          </rect>
+        </g><g transform="rotate(60 50 50)">
+          <rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill="#c5523f">
+            <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.75s" repeatCount="indefinite"></animate>
+          </rect>
+        </g><g transform="rotate(90 50 50)">
+          <rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill="#c5523f">
+            <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.6666666666666666s" repeatCount="indefinite"></animate>
+          </rect>
+        </g><g transform="rotate(120 50 50)">
+          <rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill="#c5523f">
+            <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.5833333333333334s" repeatCount="indefinite"></animate>
+          </rect>
+        </g><g transform="rotate(150 50 50)">
+          <rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill="#c5523f">
+            <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.5s" repeatCount="indefinite"></animate>
+          </rect>
+        </g><g transform="rotate(180 50 50)">
+          <rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill="#c5523f">
+            <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.4166666666666667s" repeatCount="indefinite"></animate>
+          </rect>
+        </g><g transform="rotate(210 50 50)">
+          <rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill="#c5523f">
+            <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.3333333333333333s" repeatCount="indefinite"></animate>
+          </rect>
+        </g><g transform="rotate(240 50 50)">
+          <rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill="#c5523f">
+            <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.25s" repeatCount="indefinite"></animate>
+          </rect>
+        </g><g transform="rotate(270 50 50)">
+          <rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill="#c5523f">
+            <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.16666666666666666s" repeatCount="indefinite"></animate>
+          </rect>
+        </g><g transform="rotate(300 50 50)">
+          <rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill="#c5523f">
+            <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.08333333333333333s" repeatCount="indefinite"></animate>
+          </rect>
+        </g><g transform="rotate(330 50 50)">
+          <rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill="#c5523f">
+            <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="0s" repeatCount="indefinite"></animate>
+          </rect>
+        </g></svg>
+      </div>
+      <div id="map" class="hide"></div>
     </section>
     <section id="search-results-wrapper" aria-label="Available restaurants and filters">
       <div class="filter-options" aria-label="Restaurant filters">
@@ -73,9 +132,8 @@
   </script>
   <script type="application/javascript" charset="utf-8" src="js/browserDB.js"></script>
   <script type="application/javascript" charset="utf-8" src="js/common.js"></script>
-  <script type="application/javascript" charset="utf-8" src="js/dbhelper.js"></script>
+  <script type="application/javascript" charset="utf-8" src="js/dbhelper.min.js"></script>
   <script type="application/javascript" charset="utf-8" src="js/main.js"></script>
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVBo7pG2U82PjEJWyLbngIowRp8DiHd2E&libraries=places&callback=initMap"></script>
 
 </body>
 
