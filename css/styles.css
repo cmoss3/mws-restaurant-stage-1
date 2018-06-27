@@ -15,14 +15,17 @@
 }
 
 #home-page-body #map-container #map {
-  height: 30vh;
+  height: 50vh;
 }
 
 #home-page-body #map-container #map-loading {
-  height: 30vh;
-  line-height: 35vh;
+  height: 50vh;
+  line-height: 60vh;
   text-align:center;
   width: 100%;
+  position: absolute;
+  z-index: 1;
+  background-color: #f8f8f8;
 }
 
 #home-page-body #search-results-wrapper {
@@ -313,11 +316,10 @@
 
   #home-page-body #map-container #map-loading {
     height: calc(100vh - 80px);
-    margin-top: 80px;
     position:fixed;
-    line-height: calc(100vh - 125px);
+    line-height: 100vh;
     text-align: center;
-    width: calc(100% - 400px);
+    width: calc(100% - 448px);
   }
 
   #home-page-body #search-results-wrapper {

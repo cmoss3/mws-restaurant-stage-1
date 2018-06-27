@@ -74,8 +74,6 @@ fillCuisinesHTML = (cuisines = self.cuisines) => {
  * Initialize Google map, called from HTML.
  */
 window.initMap = function() {
-  mapLoader.className = 'hide';
-  mapElement.className = '';
   let loc = {
     lat: 40.722216,
     lng: -73.987501
@@ -88,6 +86,7 @@ window.initMap = function() {
   google.maps.event.addListenerOnce(self.map, 'tilesloaded', function() {
     console.log('map loaded...');
     mapLoaded = true;
+    mapLoader.className = 'hide';
     setupAssistedTechAttributesOnGoogleMap(`Restaurant locations shown on map`);
     addMarkersToMap();
   });
@@ -209,7 +208,6 @@ addMarkersToMap = (restaurants = self.restaurants) => {
  * This script takes up far too much load-time on mobile to load it by default.
  */
 const mapLoader = document.getElementById('map-loading');
-const mapElement = document.getElementById('map');
 const mapContainer = document.getElementById('map-container');
 const loadMapButton = document.getElementById('load-google-map');
 
