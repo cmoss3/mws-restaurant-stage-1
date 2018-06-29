@@ -24,7 +24,7 @@
 
   <header aria-label="Page header">
     <nav aria-label="Page navigation">
-      <h1><a href="/" tabindex="1">Restaurant Reviews</a></h1>
+      <h1><a href="/">Restaurant Reviews</a></h1>
       <a href="#" class="install-progressive-app hide">Install App</a>
     </nav>
     <div id="no-script">
@@ -41,6 +41,32 @@
         </g>
       </svg>
     </button>
+    <section id="search-results-wrapper" aria-label="Available restaurants and filters">
+      <div class="filter-options" aria-label="Restaurant filters">
+        <label for="neighborhoods-select" style="position:absolute;opacity:0;">Neighborhood</label>
+        <select id="neighborhoods-select" name="neighborhoods" onchange="updateRestaurants()" aria-label="Filter restaurants by neighborhood">
+          <option value="all">All Neighborhoods</option>
+        </select>
+        <label for="cuisines-select" style="position:absolute;opacity:0;">Cuisine</label>
+        <select id="cuisines-select" name="cuisines" onchange="updateRestaurants()" aria-label="Filter restaurants by cuisines">
+          <option value="all">All Cuisines</option>
+        </select>
+      </div>
+      <picture id="restaurant-image-template">
+        <source
+             srcset="img/webp/X-800.webp 800w, img/webp/X-600.webp 600w, img/webp/X-400.webp 400w"
+             sizes="(max-width: 480px) 400px,(max-width: 680px) 600px, (max-width: 999px) 800px, (min-width: 1000px) 400px">
+        <img class="restaurant-img"
+             alt=""
+             src="img/jpeg/X-800.jpg"
+             srcset="img/jpeg/X-800.jpg 800w, img/jpeg/X-600.jpg 600w, img/jpeg/X-400.jpg 400w"
+             sizes="(max-width: 480px) 400px,(max-width: 680px) 600px, (max-width: 999px) 800px, (min-width: 1000px) 400px">
+      </picture>
+      <ul id="restaurants-list" aria-label="Available restaurants"></ul>
+      <footer id="footer" aria-label="Page footer">
+        Copyright (c) 2017 <a href="/"><strong>Restaurant Reviews</strong></a> All Rights Reserved.
+      </footer>
+    </section>
     <section id="map-container" class="hide" aria-label="Restaurants map" role="application">
       <div id="map-loading">
         <svg width="25%" height="25%" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid"><g transform="rotate(0 50 50)">
@@ -94,32 +120,6 @@
         </g></svg>
       </div>
       <div id="map"></div>
-    </section>
-    <section id="search-results-wrapper" aria-label="Available restaurants and filters">
-      <div class="filter-options" aria-label="Restaurant filters">
-        <label for="neighborhoods-select" style="position:absolute;opacity:0;">Neighborhood</label>
-        <select id="neighborhoods-select" name="neighborhoods" onchange="updateRestaurants()" tabindex="2" aria-label="Filter restaurants by neighborhood">
-          <option value="all">All Neighborhoods</option>
-        </select>
-        <label for="cuisines-select" style="position:absolute;opacity:0;">Cuisine</label>
-        <select id="cuisines-select" name="cuisines" onchange="updateRestaurants()" tabindex="3" aria-label="Filter restaurants by cuisines">
-          <option value="all">All Cuisines</option>
-        </select>
-      </div>
-      <picture id="restaurant-image-template">
-        <source
-             srcset="img/webp/X-800.webp 800w, img/webp/X-600.webp 600w, img/webp/X-400.webp 400w"
-             sizes="(max-width: 480px) 400px,(max-width: 680px) 600px, (max-width: 999px) 800px, (min-width: 1000px) 400px">
-        <img class="restaurant-img"
-             alt=""
-             src="img/jpeg/X-800.jpg"
-             srcset="img/jpeg/X-800.jpg 800w, img/jpeg/X-600.jpg 600w, img/jpeg/X-400.jpg 400w"
-             sizes="(max-width: 480px) 400px,(max-width: 680px) 600px, (max-width: 999px) 800px, (min-width: 1000px) 400px">
-      </picture>
-      <ul id="restaurants-list" aria-label="Available restaurants"></ul>
-      <footer id="footer" aria-label="Page footer">
-        Copyright (c) 2017 <a href="/"><strong>Restaurant Reviews</strong></a> All Rights Reserved.
-      </footer>
     </section>
   </main>
 

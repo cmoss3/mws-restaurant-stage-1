@@ -10,14 +10,6 @@
   flex-direction: column;
 }
 
-#home-page-body #map-container {
-  width: 100%;
-}
-
-#home-page-body #map-container #map {
-  height: 50vh;
-}
-
 #home-page-body #map-container #map-loading {
   height: 50vh;
   line-height: 60vh;
@@ -28,9 +20,19 @@
   background-color: #f8f8f8;
 }
 
+#home-page-body #map-container {
+  width: 100%;
+  order: 1;
+}
+
 #home-page-body #search-results-wrapper {
   width: 100%;
-  padding-left:0;
+  padding-left: 0;
+  order: 2;
+}
+
+#home-page-body #map-container #map {
+  height: 50vh;
 }
 
 #home-page-body #search-results-wrapper #restaurants-list {

@@ -118,15 +118,11 @@ fillReviewsHTML = (reviews = self.restaurant.reviews) => {
 /**
  * Create review HTML and add it to the webpage.
  */
-let reviewsCount = 0;
 createReviewHTML = (review) => {
-  reviewsCount++;
-
   const li = document.createElement('li');
   const name = document.createElement('p');
   name.innerHTML = review.name;
   li.appendChild(name);
-  li.setAttribute('tabindex', `${reviewsCount+6}`);
 
   const date = document.createElement('p');
   date.innerHTML = review.date;

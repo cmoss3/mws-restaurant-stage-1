@@ -148,10 +148,7 @@ fillRestaurantsHTML = (restaurants = self.restaurants) => {
 /**
  * Create restaurant HTML.
  */
-let restaurantCount = 0;
 createRestaurantHTML = (restaurant) => {
-  restaurantCount++;
-
   const li = document.createElement('li');
   const image = document.createElement('picture');
   const imageTemplate = document.getElementById('restaurant-image-template');
@@ -177,7 +174,6 @@ createRestaurantHTML = (restaurant) => {
   const more = document.createElement('a');
   more.innerHTML = 'View Details';
   more.href = DBHelper.urlForRestaurant(restaurant);
-  more.setAttribute('tabindex', `${restaurantCount+3}`);
   li.append(more);
 
   return li
@@ -205,7 +201,6 @@ addMarkersToMap = (restaurants = self.restaurants) => {
 /**
  * If our user is on mobile we'll only load the Google Maps API
  * If they open the map with a user gesture.
- * This script takes up far too much load-time on mobile to load it by default.
  */
 const mapLoader = document.getElementById('map-loading');
 const mapContainer = document.getElementById('map-container');
@@ -225,7 +220,5 @@ const loadMapScript = () => {
 if (window.innerWidth <= 1000) {
   loadMapButton.addEventListener('click', loadMapScript)
 } else {
-  mapContainer.className = '';
-  loadMapButton.className = 'hide';
   loadMapScript();
 }
