@@ -4,7 +4,6 @@ let restaurants,
     map,
     markers = [],
     mapLoaded = false,
-    mapMarkersLoaded = false,
     restaurantsLoaded = false;
 
 /**
@@ -130,7 +129,9 @@ resetRestaurants = (restaurants) => {
   ul.innerHTML = '';
 
   // Remove all map markers
-  // self.markers.forEach(m => m.setMap(null));
+  if (typeof self.markers !== 'undefined') {
+    self.markers.forEach(m => m.setMap(null));
+  }
   self.markers = [];
   self.restaurants = restaurants;
 }
@@ -180,12 +181,12 @@ createRestaurantHTML = (restaurant) => {
 }
 
 /**
- * Add markers for current restaurants to the map.
+ * Add markers for restaurants to the map.
  * This function will be called from 2 places (after map load and after restaurant data load)
  * We're not sure which of these processes will finish first, but we want to load the markers after both are done
  */
 addMarkersToMap = (restaurants = self.restaurants) => {
-  if (mapMarkersLoaded === true || mapLoaded === false || restaurantsLoaded === false) {
+  if (mapLoaded === false || restaurantsLoaded === false) {
     return;
   }
   restaurants.forEach(restaurant => {
