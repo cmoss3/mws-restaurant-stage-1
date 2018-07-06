@@ -109,7 +109,7 @@ updateRestaurants = () => {
       console.error(error);
     } else {
       restaurantsLoaded = true;
-      console.log('restaurants laoded...');
+      console.log('restaurants loaded...');
       resetRestaurants(restaurants);
       fillRestaurantsHTML();
       addMarkersToMap();

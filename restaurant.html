@@ -9,7 +9,7 @@
     body,li,p,td,th,ul{font-size:10pt;color:#333;font-family:Arial,Helvetica,sans-serif}a,a:focus,a:hover{text-decoration:none}body,h1,h2,h3,h4,h5,h6,li,p,td,th,ul{font-family:Arial,Helvetica,sans-serif}#footer,nav>h1>a{text-transform:uppercase}#footer,#no-script,nav{text-align:center}body,p,td,th{line-height:1.5}body{background-color:#fdfdfd;margin:0;position:relative}a{color:orange}a:focus,a:hover{color:#3397db}a img{border:0 #fff}h1,h2,h3,h4,h5,h6{margin:0 0 20px}article,aside,canvas,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}#maincontent{background-color:#f3f3f3;min-height:100%}#footer{background-color:#444;color:#aaa;font-size:8pt;letter-spacing:1px;padding:25px}nav>h1>a{line-height:80px;font-size:7pt;color:#fff;font-weight:200;letter-spacing:10px}.hide{display:none}.install-progressive-app{position:fixed;top:10px;right:20px}#no-script{margin-top:50px}nav{width:100%;height:80px;background-color:#252831}nav h1{margin:auto}
   </style>
   <!-- Main CSS file -->
-  <link rel="stylesheet" href="css/styles.min.css" type="text/css" id="deferred-styles">
+  <link rel="stylesheet" href="css/styles.css" type="text/css" id="deferred-styles">
   <!--Viewport-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!--Progressive App Manifest-->
@@ -66,9 +66,34 @@
     <!-- end restaurant -->
     <!-- Beginning reviews -->
     <section id="reviews-container" aria-label="Restaurant reviews">
+      <h2>Reviews</h2>
       <ul id="reviews-list"></ul>
     </section>
     <!-- End reviews -->
+    <!--Begin review form-->
+    <form aria-label="Write a review" id="review-form">
+      <h3>Write a review</h3>
+      <div class="review-input-wrapper">
+        <label for="rating-input">Rating</label>
+        <select name="rating" aria-label="Rating input" id="rating-input" class="review-input">
+          <option value="1">1 Star</option>
+          <option value="2">2 Star</option>
+          <option value="3">3 Star</option>
+          <option value="4">4 Star</option>
+          <option value="5">5 Star</option>
+        </select>
+      </div>
+      <div class="review-input-wrapper">
+        <label for="name-input">Name</label>
+        <input name="name" placeholder="Name" aria-label="Name input" id="name-input" class="review-input">
+      </div>
+      <div class="review-input-wrapper">
+        <label for="review-input">Review</label>
+        <textarea name="comments" placeholder="Review" aria-label="Review input" id="review-input" class="review-input"></textarea>
+      </div>
+      <button type="submit">Submit Review</button>
+    </form>
+    <!--End review form-->
     <!-- Beginning footer -->
     <footer id="footer" aria-label="Page footer">
       Copyright (c) 2017 <a href="/"><strong>Restaurant Reviews</strong></a> All Rights Reserved.

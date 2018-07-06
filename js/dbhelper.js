@@ -9,7 +9,78 @@ class DBHelper {
    */
   static get DATABASE_URL() {
     const port = 1337;
-    return `http://localhost:${port}/restaurants`;
+    return `http://localhost:${port}`;
+  }
+
+  /**
+   * Create new restaurant review
+   */
+  static createRestaurantReview(review) {
+    let restaurantReviews = [];
+    const db = new browserDB();
+    const url = this.DATABASE_URL + `/reviews`;
+    const options = {
+      method: 'POST',
+      body: JSON.stringify(review)
+    };
+
+    //Send syc message to service worker
+    navigator.serviceWorker.controller.postMessage({type: 'sync', url, options});
+
+    return new Promise(resolve => {
+
+      //Grab all current reviews from indexedDB, append new review and push to indexedDB
+      db.access('Reviews', store => {
+        const request = store.get(review.restaurant_id);
+        request.onsuccess = () => {
+          if (typeof request.result === 'undefined') {
+            return;
+          }
+          restaurantReviews = request.result;
+        };
+      }).then(() => {
+        db.access('Reviews', store => {
+          review.createdAt = new Date();
+          restaurantReviews.push(review);
+          const update = store.put(restaurantReviews, review.restaurant_id);
+          update.onsuccess = resolve;
+        });
+      });
+
+    });
+  }
+
+  /**
+   * Fetch restaurant reviews
+   */
+  static fetchRestaurantReviews(id) {
+    const db = new browserDB();
+    //If user is online, pull reviews from server and update indexedDB
+    if (navigator.onLine) {
+      const request = fetch(this.DATABASE_URL + `/reviews?restaurant_id=${id}`);
+      return request
+              .then(response => response.json())
+              .then((reviews) => {
+                  db.access('Reviews', store => {
+                    store.put(reviews, id);
+                  });
+                  return reviews;
+              });
+    }
+    //If user is offline, pull reviews from indexedDB
+    return new Promise((resolve) => {
+      db.access('Reviews', store => {
+        const request = store.get(id);
+        request.onsuccess = () => resolve(request.result);
+      });
+    });
+  }
+
+  /**
+   * Delete restaurant review
+   */
+  static deleteRestaurantReview(id) {
+    return fetch(this.DATABASE_URL + `/reviews/${id}`, {method: 'DELETE'});
   }
 
   /**
@@ -17,20 +88,20 @@ class DBHelper {
    */
   static fetchRestaurants(callback) {
     const database = new browserDB();
-    database.access(store => {
+    database.access('Restaurants', store => {
 
-      const request = store.get(DBHelper.DATABASE_URL);
+      const request = store.get(DBHelper.DATABASE_URL + `/restaurants`);
       request.onsuccess = () => {
 
         if (typeof request.result !== 'undefined') {
           callback(null, request.result);
         } else {
-          fetch(DBHelper.DATABASE_URL)
+          fetch(DBHelper.DATABASE_URL + `/restaurants`)
             .then(response => response.json())
             .then(data => {
               callback(null, data);
               const database = new browserDB();
-              database.access(store => store.put(data, DBHelper.DATABASE_URL));
+              database.access('Restaurants', store => store.put(data, DBHelper.DATABASE_URL + `/restaurants`));
             })
             .catch(e => {
                 console.log(`data fetch failure: ${e}`);

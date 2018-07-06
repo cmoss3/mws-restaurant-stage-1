@@ -70,7 +70,7 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
         fillRestaurantHoursHTML();
     }
     // fill reviews
-    fillReviewsHTML();
+    fetchRestaurantReviews();
 }
 
 /**
@@ -94,13 +94,19 @@ fillRestaurantHoursHTML = (operatingHours = self.restaurant.operating_hours) => 
 }
 
 /**
+ * Fetch restaurant reviews
+ */
+fetchRestaurantReviews = () => {
+  const id = getParameterByName('id');
+  const request = DBHelper.fetchRestaurantReviews(id);
+  request.then(fillReviewsHTML);
+}
+
+/**
  * Create all reviews HTML and add them to the webpage.
  */
-fillReviewsHTML = (reviews = self.restaurant.reviews) => {
+fillReviewsHTML = (reviews) => {
   const container = document.getElementById('reviews-container');
-  const title = document.createElement('h2');
-  title.innerHTML = 'Reviews';
-  container.appendChild(title);
 
   if (!reviews) {
     const noReviews = document.createElement('p');
@@ -109,6 +115,7 @@ fillReviewsHTML = (reviews = self.restaurant.reviews) => {
     return;
   }
   const ul = document.getElementById('reviews-list');
+  ul.innerHTML = '';
   reviews.forEach(review => {
     ul.appendChild(createReviewHTML(review));
   });
@@ -125,7 +132,7 @@ createReviewHTML = (review) => {
   li.appendChild(name);
 
   const date = document.createElement('p');
-  date.innerHTML = review.date;
+  date.innerHTML = new Date(Date.parse(review.createdAt)).toDateString();
   li.appendChild(date);
 
   const rating = document.createElement('p');
@@ -164,3 +171,23 @@ getParameterByName = (name, url) => {
     return '';
   return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
+
+/**
+ * Create a new review
+ */
+const reviewForm = document.getElementById('review-form');
+reviewForm.addEventListener('submit', e => {
+
+  e.preventDefault();
+
+  let data = new FormData(reviewForm);
+  data = {
+    restaurant_id: getParameterByName('id'),
+    rating: data.get('rating'),
+    comments: data.get('comments'),
+    name: data.get('name')
+  };
+
+  DBHelper.createRestaurantReview(data, reviewForm).then(fetchRestaurantReviews);
+  reviewForm.reset();
+});
