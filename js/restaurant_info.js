@@ -191,3 +191,52 @@ reviewForm.addEventListener('submit', e => {
   DBHelper.createRestaurantReview(data, reviewForm).then(fetchRestaurantReviews);
   reviewForm.reset();
 });
+
+/**
+ * Fill HTML for restaurant favourite star
+ */
+const restaurantId = getParameterByName('id');
+const starWrapper = document.getElementById('favourite-star-wrapper');
+const starImage = document.createElement('img');
+const isFavourite = DBHelper.fetchFavouriteStatus(restaurantId);
+const toggleStar = (favourite) => {
+    if (favourite) {
+        starWrapper.className = 'remove-from-favourites';
+        starWrapper.title = 'Remove restaurant from favourites';
+        starWrapper.setAttribute('aria-label', starWrapper.title);
+        starImage.setAttribute('src', 'https://png.icons8.com/color/50/000000/filled-star.png');
+    } else {
+        starWrapper.className = 'add-to-favourites';
+        starWrapper.title = 'Add restaurant to favourites';
+        starWrapper.setAttribute('aria-label', starWrapper.title);
+        starImage.setAttribute('src', 'https://png.icons8.com/color/50/000000/star.png');
+    }
+    starWrapper.appendChild(starImage);
+    setStarListeners();
+};
+
+starImage.setAttribute('alt', '');
+isFavourite.then(toggleStar);
+
+/**
+ * Set listeners to favourite / un-favourite a restaurant
+ */
+
+const setStarListeners = () => {
+  const removeFromFavourites = document.querySelector('.remove-from-favourites');
+  const addToFavourites = document.querySelector('.add-to-favourites');
+
+  if (removeFromFavourites !== null) {
+    removeFromFavourites.addEventListener('click', function(e) {
+        e.preventDefault();
+        DBHelper.setFavouriteStatus(restaurantId, false).then(toggleStar(false));
+    });
+  }
+
+  if (addToFavourites !== null) {
+    addToFavourites.addEventListener('click', function(e) {
+        e.preventDefault();
+        DBHelper.setFavouriteStatus(restaurantId, true).then(toggleStar(true));
+    });
+  }
+};

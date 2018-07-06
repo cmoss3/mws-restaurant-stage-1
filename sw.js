@@ -39,7 +39,9 @@ const urlsToCache = [
     '/js/main.js',
     '/js/restaurant_info.js',
     '/index.html',
-    '/restaurant.html'
+    '/restaurant.html',
+    'https://png.icons8.com/color/50/000000/filled-star.png',
+    'https://png.icons8.com/color/50/000000/star.png'
 ];
 
 self.addEventListener('install', function(event) {

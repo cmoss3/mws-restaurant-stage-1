@@ -33,18 +33,16 @@ class DBHelper {
       db.access('Reviews', store => {
         const request = store.get(review.restaurant_id);
         request.onsuccess = () => {
-          if (typeof request.result === 'undefined') {
-            return;
+          if (typeof request.result !== 'undefined') {
+            restaurantReviews = request.result;
           }
-          restaurantReviews = request.result;
+          db.access('Reviews', store => {
+              review.createdAt = new Date();
+              restaurantReviews.push(review);
+              const update = store.put(restaurantReviews, review.restaurant_id);
+              update.onsuccess = resolve;
+          });
         };
-      }).then(() => {
-        db.access('Reviews', store => {
-          review.createdAt = new Date();
-          restaurantReviews.push(review);
-          const update = store.put(restaurantReviews, review.restaurant_id);
-          update.onsuccess = resolve;
-        });
       });
 
     });
@@ -73,6 +71,59 @@ class DBHelper {
         const request = store.get(id);
         request.onsuccess = () => resolve(request.result);
       });
+    });
+  }
+
+  /**
+   * Get the favourite status of a restaurant
+   */
+  static fetchFavouriteStatus(id) {
+    return new Promise((resolve, reject) => {
+      this.fetchRestaurantById(id, (error, restaurant) => {
+        if (error !== null) {
+          reject(error);
+        }
+        resolve(restaurant.is_favorite);
+      });
+    });
+  }
+
+  /**
+   * Set the favourite status of a restaurant
+   */
+  static setFavouriteStatus(id, status) {
+    const strToggle = status ? 'true' : 'false';
+    const url = this.DATABASE_URL + `/restaurants/${id}/?is_favorite=${strToggle}`;
+    const db = new browserDB();
+    let restaurants = [];
+
+    return new Promise(resolve => {
+
+      //Send syc message to service worker
+      navigator.serviceWorker.controller.postMessage({type: 'sync', url});
+
+      //Manually update local DB with new status
+      db.access('Restaurants', (store) => {
+        const request = store.get(this.DATABASE_URL + `/restaurants`);
+        request.onsuccess = () => {
+          if (request.result !== 'undefined') {
+
+            restaurants = request.result;
+            restaurants.forEach((restaurant, index) => {
+              if (restaurant.id === parseInt(id)) {
+                const ldb = new browserDB();
+                restaurants[index].is_favorite = status;
+                ldb.access('Restaurants', store => {
+                  const update = store.put(restaurants, this.DATABASE_URL + `/restaurants`);
+                  update.onsuccess = resolve;
+                });
+              }
+            });
+
+          }
+        };
+      });
+
     });
   }
 
