@@ -94,13 +94,14 @@ class DBHelper {
   static setFavouriteStatus(id, status) {
     const strToggle = status ? 'true' : 'false';
     const url = this.DATABASE_URL + `/restaurants/${id}/?is_favorite=${strToggle}`;
+    const options = {method: 'PUT'};
     const db = new browserDB();
     let restaurants = [];
 
     return new Promise(resolve => {
 
       //Send syc message to service worker
-      navigator.serviceWorker.controller.postMessage({type: 'sync', url});
+      navigator.serviceWorker.controller.postMessage({type: 'sync', url, options});
 
       //Manually update local DB with new status
       db.access('Restaurants', (store) => {

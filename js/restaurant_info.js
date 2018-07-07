@@ -221,7 +221,6 @@ isFavourite.then(toggleStar);
 /**
  * Set listeners to favourite / un-favourite a restaurant
  */
-
 const setStarListeners = () => {
   const removeFromFavourites = document.querySelector('.remove-from-favourites');
   const addToFavourites = document.querySelector('.add-to-favourites');
